@@ -9,3 +9,9 @@ salt_minion_check () {
 	  tail -f /var/log/salt/minion
 	fi
 }
+
+echo "master: salt-master" >> /etc/salt/minion && \
+echo "id: salt-minion-$(hostname)" >> /etc/salt/minion
+
+service salt-minion start && \
+salt_minion_check
