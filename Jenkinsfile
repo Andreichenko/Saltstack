@@ -1,6 +1,7 @@
 properties([[$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '10', artifactNumToKeepStr: '30', daysToKeepStr: '365', numToKeepStr: '']]]);
 timestamps {
-    node('linux' && 'gradle-2.12'){
+     
+     node('linux'){
         workspace = pwd()
         // Mark the code checkout 'stage'....
         stage('Checkout'){
@@ -14,12 +15,13 @@ timestamps {
             VERSION=$(date +%Y.%m.%d)
             export BRANCH_CLEAN
 
-            gradle clean createRpms -Dorg.gradle.project.version=${VERSION} -Dorg.gradle.project.release=${BRANCH_CLEAN}_${BUILD_NUMBER} --info;
-            ls build/distributions/
+            echo $BRANCH_CLEAN
+            ls salt-master/
+            ls salt-minion/
             '''
 
         }
-        archiveArtifacts artifacts: 'build/distributions/*.rpm', name: 'Build Artifacts'
+        
 
     }
 }
