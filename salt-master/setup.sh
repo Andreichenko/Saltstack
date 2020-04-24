@@ -13,3 +13,5 @@ key_checker () {
 	tail -f /var/log/salt/master
 }
 
+service salt-master start && key_checker
+
