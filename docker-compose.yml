@@ -1,0 +1,10 @@
+version: '2'
+services:
+  minion:
+    image: andreichenko/salt-minion
+    links: 
+      - master
+    depends_on:
+      - master
+  master:
+    image: andreichenko/salt-master
