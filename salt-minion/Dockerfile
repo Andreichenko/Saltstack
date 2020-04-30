@@ -1,5 +1,6 @@
-FROM centos:7
+FROM ubuntu:trusty
 MAINTAINER Sascha F. Andreichenko <andreichenko@web.de>
-RUN yum update && yum install salt-minion curl -y
+RUN apt-get update && apt-get install -y salt-minion curl
 COPY setup.sh /opt/setup.sh
 ENTRYPOINT ["sh","/opt/setup.sh"]
+CMD []
