@@ -1,5 +1,5 @@
-FROM centos:7
+FROM ubuntu:trusty
 MAINTAINER Sascha F. Andreichenko <andreichenko@web.de>
-RUN yum update && yum install salt-master -y
+RUN apt-get update && apt-get install -y salt-master
 COPY setup.sh /opt/setup.sh
 ENTRYPOINT ["sh","/opt/setup.sh"]
