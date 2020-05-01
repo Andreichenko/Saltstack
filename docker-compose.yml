@@ -12,8 +12,7 @@ services:
      - ./pillar/:/srv/pillar
     ports:
       - '22033:22'
-    depends_on:
-      - "salt-minion-2"
+    
     networks:
       - salt-stack-net
 
@@ -37,8 +36,7 @@ services:
     hostname: "salt-minion-2"
     ports:
       - '22035:22'
-    depends_on:
-      - "salt-minion-1"
+    
     networks:
       - salt-stack-net
 
