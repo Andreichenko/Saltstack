@@ -1,10 +1,47 @@
-version: '2'
+version: "2"
+
 services:
-  minion:
-    image: andreichenko/salt-minion
-    links: 
-      - master
-    depends_on:
-      - master
   master:
-    image: andreichenko/salt-master
+    build: ./salt-master
+    privileged: true
+    restart: always
+    container_name: "salt-master"
+    hostname: "devops-salt-master"
+    volumes:
+     - ./salt/:/srv/salt
+     - ./pillar/:/srv/pillar
+    ports:
+      - '22033:22'
+    depends_on:
+      - "salt-minion-2"
+    networks:
+      - salt-stack-net
+
+  client1:
+    build: ./salt-minion
+    privileged: true
+    restart: always
+    container_name: "salt-minion-1"
+    hostname: "salt-minion-1"
+    ports:
+      - '22034:22'
+
+    networks:
+      - salt-stack-net
+
+  client2:
+    build: ./salt-minion
+    privileged: true
+    restart: always
+    container_name: "salt-minion-2"
+    hostname: "salt-minion-2"
+    ports:
+      - '22035:22'
+    depends_on:
+      - "salt-minion-1"
+    networks:
+      - salt-stack-net
+
+networks:
+  salt-stack-net:
+    driver: bridge
