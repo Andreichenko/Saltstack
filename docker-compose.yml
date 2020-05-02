@@ -6,7 +6,7 @@ services:
     privileged: true
     restart: always
     container_name: "salt-master"
-    hostname: "devops-salt-master"
+    hostname: "salt"
     volumes:
      - ./salt/:/srv/salt
      - ./pillar/:/srv/pillar
