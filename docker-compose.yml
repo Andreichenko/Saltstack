@@ -16,7 +16,7 @@ services:
     networks:
       - salt-stack-net
 
-  client1:
+  minion1:
     build: ./salt-minion
     privileged: true
     restart: always
@@ -28,7 +28,7 @@ services:
     networks:
       - salt-stack-net
 
-  client2:
+  minion2:
     build: ./salt-minion
     privileged: true
     restart: always
