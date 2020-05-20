@@ -21,6 +21,12 @@ timestamps {
             '''
 
         }
+        stage('Test'){
+          sh '''
+           cat salt-master/Dockerfile
+           cat salt-minion/Dockerfile
+          '''
+        }
         
 
     }
